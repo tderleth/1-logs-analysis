@@ -39,14 +39,14 @@ def get_popular_articles():
                GROUP BY articles.title
                ORDER BY views DESC """
     c.execute(query)
-    rows = c.fetchall()
+    data = c.fetchall()
     db.close()
     print "\n\n"
     print colored("Which articles have been accessed most?", 'green')
-    for row in rows:
-        print colored(str(row[1]), 'red') + " views" + " - " + row[0]
+    for record in data:
+        print colored(str(record[1]), 'red') + " views" + " - " + record[0]
     print "\n"
-    return rows
+    return data
 
 
 """
@@ -71,20 +71,20 @@ def get_popular_authors():
                GROUP BY authors.name
                ORDER BY views DESC """
     c.execute(query)
-    rows = c.fetchall()
+    data = c.fetchall()
     db.close()
     print "\n\n"
     print colored("Who are the most popular authors of all time?", 'green')
-    for row in rows:
-        print colored(str(row[1]), 'red') + " views" + " - " + row[0]
+    for record in data:
+        print colored(str(record[1]), 'red') + " views" + " - " + record[0]
     print "\n"
-    return rows
+    return data
 
 
 """
 Task:       On which days did more than 1 % of requests lead to errors?
 Help:       The log table includes a column status that indicates
-            the HTTP status code that the news site sent to the user's browser.
+            the HTTP status code that the news site sent to the user's bdataer.
 Example:    July 29, 2016 — 2.5 % errors
 """
 
@@ -105,15 +105,15 @@ def get_bad_devops_days():
         WHERE (CAST(stats.error as FLOAT) /
                 CAST(stats.success as FLOAT) * 100) > 1 """
     c.execute(query)
-    rows = c.fetchall()
+    data = c.fetchall()
     db.close()
     print "\n\n"
     print colored("Days with more then 1% error rate:", 'green')
-    for row in rows:
-        print row[0].strftime("%B %d, %Y") + " - " \
-            + colored(str(row[1])[:3] + "%", 'red') + " errors"
+    for record in data:
+        print record[0].strftime("%B %d, %Y") + " - " \
+            + colored(str(record[1])[:3] + "%", 'red') + " errors"
     print "\n"
-    return rows
+    return data
 
 
 if __name__ == '__main__':
