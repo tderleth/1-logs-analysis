@@ -9,12 +9,19 @@ The project uses [virtualbox](https://www.virtualbox.org/wiki/Download_Old_Build
 1.  `git clone git@github.com:tderleth/1-logs-analysis.git`
 2.  `cd 1-logs-analysis`
 3.  `vagrant up && vagrant ssh`
+4.  Within the VM run `sudo pip install termcolor` (adds a package to easily highlight shell output)
+
+## Import data
+
+In order to use the tool you need to import the data into the VM database. Unzip the [data file](/newsdata.sql.zip) and run `psql -d news -f newsdata.sql` inside your vagrant machine. 
 
 ## Usage
 
-### Import data
+After performing all previous steps you can interact with the analysis tool. You have three different options (first make sure that your pwd is `/vagrant`):
 
-In order to use the tool you need to import the data into the VM database. Unzip the [data file](/newsdata.sql.zip) and run `psql -d news -f newsdata.sql` inside your vagrant machine. 
+-   `python log.py articles` - What are the most popular three articles of all time?
+-   `python log.py authors` - Who are the most popular article authors of all time?
+-   `python log.py errors` - On which days did more than 1% of requests lead to errors?
 
 ## Maintainer
 
