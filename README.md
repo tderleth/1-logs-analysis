@@ -10,6 +10,12 @@ The project uses [virtualbox](https://www.virtualbox.org/wiki/Download_Old_Build
 2.  `cd 1-logs-analysis`
 3.  `vagrant up && vagrant ssh`
 
+## Usage
+
+### Import data
+
+In order to use the tool you need to import the data into the VM database. Unzip the [data file](/newsdata.sql.zip) and run `psql -d news -f newsdata.sql` inside your vagrant machine. 
+
 ## Maintainer
 
 -   [Thomas Derleth](mailto:thomas.derleth@moovel.com)
