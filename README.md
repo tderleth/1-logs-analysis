@@ -23,6 +23,14 @@ After performing all previous steps you can interact with the analysis tool. You
 -   `python logs.py authors` - Who are the most popular article authors of all time?
 -   `python logs.py errors` - On which days did more than 1% of requests lead to errors?
 
+## References
+
+[VM configuration](/Vagrantfile) duplicate of [udacity/fullstack-nanodegree-vm/](https://github.com/udacity/fullstack-nanodegree-vm/blob/master/vagrant/Vagrantfile)
+
+## Dependencies
+
+[psycopg2](http://initd.org/psycopg/), [sys](https://docs.python.org/2/library/sys.html), [colored](https://pypi.org/project/colored/)
+
 ## Maintainer
 
 -   [Thomas Derleth](mailto:thomas.derleth@moovel.com)
