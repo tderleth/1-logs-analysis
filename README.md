@@ -19,9 +19,9 @@ In order to use the tool you need to import the data into the VM database. Unzip
 
 After performing all previous steps you can interact with the analysis tool. You have three different options (first make sure that your pwd is `/vagrant`):
 
--   `python log.py articles` - What are the most popular three articles of all time?
--   `python log.py authors` - Who are the most popular article authors of all time?
--   `python log.py errors` - On which days did more than 1% of requests lead to errors?
+-   `python logs.py articles` - What are the most popular three articles of all time?
+-   `python logs.py authors` - Who are the most popular article authors of all time?
+-   `python logs.py errors` - On which days did more than 1% of requests lead to errors?
 
 ## Maintainer
 
