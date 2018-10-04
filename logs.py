@@ -30,6 +30,19 @@ def init(action=''):
             + colored("\n - python logs.py errors", 'yellow')
 
 
+def execute_query(query):
+    """ Take a query, return the results as a list of tuples."""
+    try:
+        db = psycopg2.connect(database=DBNAME)
+        c = db.cursor()
+        c.execute(query)
+        data = c.fetchall()
+        db.close()
+        return data
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+
+
 """
 Task:       Which 3 articles have been accessed the most?
 Output:     Sorted list with the most popular article at the top.
@@ -39,8 +52,6 @@ Example:    Princess Shellfish Marries Prince Handsome — 1201 views
 
 def get_popular_articles():
     """Return records for most popular articles."""
-    db = psycopg2.connect(database=DBNAME)
-    c = db.cursor()
     query = """SELECT articles.title, count(*) as views
                FROM articles
                JOIN log
@@ -48,9 +59,7 @@ def get_popular_articles():
                GROUP BY articles.title
                ORDER BY views DESC
                LIMIT 3 """
-    c.execute(query)
-    data = c.fetchall()
-    db.close()
+    data = execute_query(query)
     print "\n\n"
     print colored("Which articles have been accessed most?", 'green')
     for record in data:
@@ -69,8 +78,6 @@ Example:    Ursula La Multa — 2304 views
 
 def get_popular_authors():
     """Return records for most popular authors."""
-    db = psycopg2.connect(database=DBNAME)
-    c = db.cursor()
     query = """SELECT authors.name, sum(articles.views) as views
                FROM authors
                JOIN ( SELECT articles.author, count(*) as views
@@ -81,9 +88,7 @@ def get_popular_authors():
                ON authors.id = articles.author
                GROUP BY authors.name
                ORDER BY views DESC """
-    c.execute(query)
-    data = c.fetchall()
-    db.close()
+    data = execute_query(query)
     print "\n\n"
     print colored("Who are the most popular authors of all time?", 'green')
     for record in data:
@@ -102,8 +107,6 @@ Example:    July 29, 2016 — 2.5 % errors
 
 def get_bad_devops_days():
     """Return records for bad devops days."""
-    db = psycopg2.connect(database=DBNAME)
-    c = db.cursor()
     query = """SELECT stats.date,
         (CAST(stats.error as FLOAT) / CAST(stats.all as FLOAT) * 100)
         FROM (
@@ -116,9 +119,7 @@ def get_bad_devops_days():
         ) AS stats
         WHERE (CAST(stats.error as FLOAT) /
                 CAST(stats.all as FLOAT) * 100) > 1 """
-    c.execute(query)
-    data = c.fetchall()
-    db.close()
+    data = execute_query(query)
     print "\n\n"
     print colored("Days with more then 1% error rate:", 'green')
     for record in data:
