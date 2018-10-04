@@ -1,6 +1,9 @@
 #!/usr/bin/env python2.7
 # -*- coding: utf-8 -*-
 
+"""Udacity Fullstack Developer nanodegree (Logs Analyses)."""
+
+
 import psycopg2
 import sys
 from termcolor import colored
@@ -9,6 +12,7 @@ DBNAME = "news"
 
 
 def init(action=''):
+    """Call user intended method."""
     if action == 'authors':
         get_popular_authors()
     elif action == 'articles':
@@ -30,6 +34,7 @@ Example:    Princess Shellfish Marries Prince Handsome — 1201 views
 
 
 def get_popular_articles():
+    """Return records for most popular articles."""
     db = psycopg2.connect(database=DBNAME)
     c = db.cursor()
     query = """SELECT articles.title, count(*) as views
@@ -58,6 +63,7 @@ Example:    Ursula La Multa — 2304 views
 
 
 def get_popular_authors():
+    """Return records for most popular authors."""
     db = psycopg2.connect(database=DBNAME)
     c = db.cursor()
     query = """SELECT authors.name, sum(articles.views) as views
@@ -90,6 +96,7 @@ Example:    July 29, 2016 — 2.5 % errors
 
 
 def get_bad_devops_days():
+    """Return records for bad devops days."""
     db = psycopg2.connect(database=DBNAME)
     c = db.cursor()
     query = """SELECT stats.date,
