@@ -105,17 +105,17 @@ def get_bad_devops_days():
     db = psycopg2.connect(database=DBNAME)
     c = db.cursor()
     query = """SELECT stats.date,
-        (CAST(stats.error as FLOAT) / CAST(stats.success as FLOAT) * 100)
+        (CAST(stats.error as FLOAT) / CAST(stats.all as FLOAT) * 100)
         FROM (
             SELECT  DATE(time) as date,
-                count(*) FILTER (WHERE status = '200 OK') AS success,
+                count(*) AS all,
                 count(*) FILTER (WHERE status != '200 OK') AS error
             FROM log
             GROUP BY DATE(time)
             ORDER BY date DESC
         ) AS stats
         WHERE (CAST(stats.error as FLOAT) /
-                CAST(stats.success as FLOAT) * 100) > 1 """
+                CAST(stats.all as FLOAT) * 100) > 1 """
     c.execute(query)
     data = c.fetchall()
     db.close()
