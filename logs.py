@@ -124,7 +124,7 @@ def get_bad_devops_days():
     print colored("Days with more then 1% error rate:", 'green')
     for record in data:
         print record[0].strftime("%B %d, %Y") + " - " \
-            + colored(str(record[1])[:3] + "%", 'red') + " errors"
+            + colored(str(round(record[1], 1)) + "%", 'red') + " errors"
     print "\n"
     return data
 
