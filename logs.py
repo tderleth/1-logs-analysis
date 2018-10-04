@@ -44,7 +44,7 @@ def get_popular_articles():
     query = """SELECT articles.title, count(*) as views
                FROM articles
                JOIN log
-               ON log.path LIKE('%' || articles.slug)
+               ON log.path LIKE('/article/' || articles.slug)
                GROUP BY articles.title
                ORDER BY views DESC """
     c.execute(query)
