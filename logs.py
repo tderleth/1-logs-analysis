@@ -31,7 +31,7 @@ def init(action=''):
 
 
 """
-Task:       Which articles have been accessed the most?
+Task:       Which 3 articles have been accessed the most?
 Output:     Sorted list with the most popular article at the top.
 Example:    Princess Shellfish Marries Prince Handsome — 1201 views
 """
@@ -46,7 +46,8 @@ def get_popular_articles():
                JOIN log
                ON log.path LIKE('/article/' || articles.slug)
                GROUP BY articles.title
-               ORDER BY views DESC """
+               ORDER BY views DESC
+               LIMIT 3 """
     c.execute(query)
     data = c.fetchall()
     db.close()
