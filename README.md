@@ -1,6 +1,6 @@
 # Project: Logs Analyses
 
-This repo is part of a series of project belonging to my [Full Stack Web Developer Nanodegree](https://eu.udacity.com/course/full-stack-web-developer-nanodegree--nd004). Purpose of this lesson is to master SQL databases and build multi-user web applications using the Flask framework, SQLAlchemy, and authentication providers such as Google and Facebook.
+This repo is part of a series of projects belonging to my [Full Stack Web Developer Nanodegree](https://eu.udacity.com/course/full-stack-web-developer-nanodegree--nd004). Purpose of this lesson is to dig deeper into SQL language using a python script. The script facilitates the [psycopg2 adapter](http://initd.org/psycopg/docs/) to connect to a database filled with mock data. You can find the database schema [here](/docs/db-schema.md). For more info on how analysis is done and which questions it answers check section [Usage](#usage).
 
 ## Installation
 
@@ -15,7 +15,7 @@ The project uses [virtualbox](https://www.virtualbox.org/wiki/Download_Old_Build
 
 In order to use the tool you need to import the data into the VM database. Unzip the [data file](/newsdata.sql.zip) and run `psql -d news -f newsdata.sql` inside your vagrant machine. 
 
-## Usage
+## <a name="usage">Usage</a>
 
 After performing all previous steps you can interact with the analysis tool. You have the following options (first make sure that your pwd is `/vagrant`):
 
