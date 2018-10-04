@@ -19,6 +19,10 @@ def init(action=''):
         get_popular_articles()
     elif action == 'errors':
         get_bad_devops_days()
+    elif action == 'all':
+        get_popular_authors()
+        get_popular_articles()
+        get_bad_devops_days()
     else:
         print colored("Pass an argument to the analysis tool:", 'red')   \
             + colored("\n - python logs.py authors", 'yellow') \
